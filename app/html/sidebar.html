@@ -1,0 +1,9 @@
+<div ng-controller="SidebarController">
+  <div style="font-size:1.3em; margin-bottom: 12px;">Authors</div>
+  <ul class="list-unstyled">
+  <li><a href ng-click="filterAuthor('')">All</a></li>
+  </ul>
+  <ul class="list-unstyled" ng-repeat="author in authors | orderBy">
+    <li><a href ng-click="filterAuthor(author)">{{ author }}</a></li>
+  </ul>
+</div>
