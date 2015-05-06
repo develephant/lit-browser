@@ -36,9 +36,20 @@
       });
     };
 
+    $scope.filterQuery = function( evt ) {
+      var query = { pack_name: evt.target.value };
+      $rootScope.$emit('list-query-change', query );
+    };
+
+    $rootScope.$on('list-filter-change', function( evt ) {
+      $scope.qfilter = '';
+      $('#queryFld').focus();
+    });
+
+    $('#queryFld').focus();
+
     $scope.showCart = function() {
       console.log( Cart.getCart() );
-
     };
 
     $rootScope.$on('cart-count-changed', function( evt, count ) {

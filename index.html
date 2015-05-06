@@ -7,7 +7,7 @@
     <title ng-bind="head_title"></title>
 
     <link href="https://bootswatch.com/paper/bootstrap.min.css" rel="stylesheet">
-
+    <!-- <link href="deps/fontawesome/css/font-awesome.min.js" rel="stylesheet"> -->
     <link href="css/app.css" rel="stylesheet">
 
     <script src="deps/jquery/dist/jquery.min.js"></script>
@@ -15,8 +15,6 @@
     <script src="deps/angular/angular.min.js"></script>
     <script src="deps/angular-route/angular-route.min.js"></script>
     <script src="deps/angular-modal-service/dst/angular-modal-service.min.js"></script>
-
-    <!--<script src="deps/angular-fontawesome/dist/angular-fontawesome.min.js"></script>-->
 
     <script src="js/Services.js"></script>
     <script src="js/Controllers.js"></script>
@@ -31,20 +29,23 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/" class="navbar-brand"><strong>Lit</strong> <span class="text-muted"><small>Repo</small></span></a>
+                <a href="/" class="navbar-brand"><strong>Lit</strong> <span class="text-muted"><small>Browser</small></span></a>
             </div>
-            <div id="cart-button">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><button class="btn btn-primary" ng-click="showAModal()">Packages <span class="badge" ng-bind="pack_count"></span></button></li>
-                </ul>
-            </div>
+
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input id="queryFld" name="queryFld" type="text" style="width:300px;" ng-model="qfilter" ng-keyup="filterQuery($event)" class="form-control" placeholder="Search...">
+                </div>
+                <button class="btn btn-primary" style="margin-left:24px;" ng-click="showAModal()">Packages <span class="badge" ng-bind="pack_count"></span></button>
+            </form>
+
         </div>
     </nav>
 
     <!-- CONTENT VIEW -->
     <div class="container" id="wrapper">
         <div class="row">
-            <div class="col-md-2"><div style="margin-top:72px;" ng-include="'html/sidebar.html'"></div></div>
+            <div class="col-md-2"><div style="margin-top:80px;" ng-include="'html/sidebar.html'"></div></div>
             <div class="col-md-10"><div ng-view></div></div> <!-- content -->
         </div>
     </div>

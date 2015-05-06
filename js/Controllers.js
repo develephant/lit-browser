@@ -67,22 +67,10 @@
     
     $scope.radioModel = 'pack_name';
 
-    $scope.filterQuery = function( evt ) {
-      var query = { pack_name: evt.target.value };
-      $rootScope.$emit('list-query-change', query );
-    };
-
     $scope.changeOrder = function( orderby ) {
       //console.log( orderby );
       $rootScope.$emit('list-order-change', orderby );
     };
-
-    $rootScope.$on('list-filter-change', function( evt ) {
-      $scope.qfilter = '';
-      $('#queryFld').focus();
-    });
-
-    $('#queryFld').focus();
 
   }]);
 
