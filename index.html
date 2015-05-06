@@ -1,1 +1,52 @@
-<h1>hello</h1>
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title ng-bind="head_title"></title>
+
+    <link href="https://bootswatch.com/paper/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/app.css" rel="stylesheet">
+
+    <script src="deps/jquery/dist/jquery.min.js"></script>
+    <script src="deps/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="deps/angular/angular.min.js"></script>
+    <script src="deps/angular-route/angular-route.min.js"></script>
+    <script src="deps/angular-modal-service/dst/angular-modal-service.min.js"></script>
+
+    <!--<script src="deps/angular-fontawesome/dist/angular-fontawesome.min.js"></script>-->
+
+    <script src="js/Services.js"></script>
+    <script src="js/Controllers.js"></script>
+
+    <script src="app.js"></script>
+
+
+</head>
+
+<body ng-controller="RootController">
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand"><strong>Lit</strong> <span class="text-muted"><small>Repo</small></span></a>
+            </div>
+            <div id="cart-button">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><button class="btn btn-primary" ng-click="showAModal()">Packages <span class="badge" ng-bind="pack_count"></span></button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT VIEW -->
+    <div class="container" id="wrapper">
+        <div class="row">
+            <div class="col-md-2"><div style="margin-top:72px;" ng-include="'html/sidebar.html'"></div></div>
+            <div class="col-md-10"><div ng-view></div></div> <!-- content -->
+        </div>
+    </div>
+</body>
+</html>
