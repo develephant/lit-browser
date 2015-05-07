@@ -16,7 +16,7 @@
     })
   });
 
-  app.controller('RootController', ['$rootScope','$scope','Cart','ModalService', function($rootScope,$scope,Cart,ModalService) {
+  app.controller('RootController', ['$rootScope','$scope','$anchorScroll','Cart','ModalService', function($rootScope,$scope,$anchorScroll,Cart,ModalService) {
     $scope.pack_count = 0;
 
     $scope.showAModal = function() {
@@ -44,6 +44,8 @@
     $rootScope.$on('list-filter-change', function( evt ) {
       $scope.qfilter = '';
       $('#queryFld').focus();
+
+      $anchorScroll('content-top');
     });
 
     $('#queryFld').focus();
