@@ -145,12 +145,19 @@
   app.controller('ModalController', ['$scope','Cart','pack_cart','close', function($scope,Cart,pack_cart,close) {
 
     //console.log( pack_cart );
-
-    var code = 'dependencies = {' + "\r\n";
+    var code = 'return {' + "\r\n";
+    code = code + ' name = "lit/package",' + "\r\n";
+    code = code + ' version = "0.0.0",' + "\r\n";
+    code = code + ' dependencies = {' + "\r\n";
     angular.forEach( pack_cart, function( pack_id, pack_path ) {
-      code = code + "  " + '"' + pack_path + '"' + ',' + "\r\n";
+      code = code + "   " + '"' + pack_path + '"' + ',' + "\r\n";
     });
-    code = code + '},';
+    code = code + ' },' + "\r\n";
+    code = code + ' files = {' + "\r\n";
+    code = code + '  "**.lua",' + "\r\n";
+    code = code + '  "!test*"' + "\r\n";
+    code = code + ' }' + "\r\n";
+    code = code + '}';
 
     $scope.cart = code;
 

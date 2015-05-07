@@ -63,7 +63,7 @@
   }]);
 
   app.run( function($rootScope) {
-    $rootScope.head_title = "Lit";
+    $rootScope.head_title = "Lit Package Browser";
   });
 
 })();
