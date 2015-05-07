@@ -169,8 +169,7 @@
 
     $http.get( blob_url ).then( function( result ) {
       //console.log( result );
-      $filter('json')( result.data );
-      $scope.blob = result.data;
+      $scope.blob = $filter('json')( result.data );
     }, function( err ) {
       //console.log( err );
     });
