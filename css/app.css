@@ -1,5 +1,9 @@
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 .container {
   margin-top: 72px;
   padding-bottom: 32px;

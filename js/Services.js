@@ -9,7 +9,7 @@
       if ( !cart[ dep_path ] ) {
         cart[ dep_path ] = dep_path;
       } else {
-        console.log('already in cart, remove');
+        //console.log('already in cart, remove');
         //remove it
         this.removeCart( dep_path );
       };
@@ -94,11 +94,11 @@
               };
 
             }, function( err ) {
-              console.log( err );
+              //console.log( err );
             });
           });
         }, function( err ) {
-          console.log( err );
+          //console.log( err );
         });
       };
 

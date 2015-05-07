@@ -49,7 +49,7 @@
     $('#queryFld').focus();
 
     $scope.showCart = function() {
-      console.log( Cart.getCart() );
+      //console.log( Cart.getCart() );
     };
 
     $rootScope.$on('cart-count-changed', function( evt, count ) {

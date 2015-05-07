@@ -29,11 +29,11 @@
               </div>
             </div>
             <div class="panel-body" ng-hide="show_version_btn">
-              <h5 ng-show="packs_loading" class="lead text-success">Loading...</h5>
+              <h5 ng-show="packs_loading" class="lead text-muted"><i class="fa fa-cog fa-spin fa-2x"></i></h5>
               <div id="pack-versions" ng-show="packs_loaded" ng-repeat="pack in pack_versions | orderBy: '-version'">
                 <div class="row">
                   <div class="col-md-2">
-                    <h5><a href="{{ pack.link }}" target="_blank" class="text-warning"><strong>{{ pack.version }}</strong></a></h5>
+                    <h5><a href ng-click="showBlob(pack.link)" class="text-warning"><strong>{{ pack.version }}</strong></a></h5>
                   </div>
                   <div class="col-md-9">
                     <h5>{{ package.author }}/{{ package.pack_name }}@{{ pack.version }}</h5>

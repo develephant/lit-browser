@@ -27,7 +27,7 @@
 
     //SERVICE TEST
     $rootScope.$on('packages-loaded', function( evt, packages ) {
-      console.log('Repo Loaded!');
+      //console.log('Repo Loaded!');
 
       $scope.packages = packages;
 
@@ -37,7 +37,7 @@
 
     //build repo object
     if ( !packs_loaded ) {
-      console.log( "Loading Repo" );
+      //console.log( "Loading Repo" );
       packs_loaded = true;
       Repo.loadRepo();
     };
@@ -52,7 +52,7 @@
     };
 
     $rootScope.$on('packages-loaded', function( evt ) {
-      console.log('Sidebar Go');
+      //console.log('Sidebar Go');
       
       var r = repo.getRepo();
       var authors = Object.keys( r );
@@ -75,7 +75,7 @@
   }]);
 
   //Package Controller
-  app.controller('PackageController', ['$scope','$http','Cart', function($scope,$http,Cart) {
+  app.controller('PackageController', ['$scope','$http','Cart','ModalService', function($scope,$http,Cart,Modal) {
 
     $scope.show_version_btn = true;
 
@@ -115,7 +115,7 @@
         $scope.packs_loading = false;
 
       }, function( err ) {
-        console.log( err );
+        //console.log( err );
       });
     };
 
@@ -123,12 +123,28 @@
       var path = package.author + '/' + package.pack_name + '@' + pack.version;
       Cart.addCart( path );
     };
+
+    $scope.showBlob = function( blob_url ) {
+
+      Modal.showModal({
+          templateUrl: './html/blob.html',
+          controller: 'BlobController',
+          inputs: {
+            blob_url: blob_url
+          }
+        }).then( function( modal ) {
+          modal.element.modal();
+          modal.close.then( function( result ) {
+            //console.log( result );
+          });
+        });
+      };
   }]);
 
   //Modal
   app.controller('ModalController', ['$scope','Cart','pack_cart','close', function($scope,Cart,pack_cart,close) {
 
-    console.log( pack_cart );
+    //console.log( pack_cart );
 
     var code = 'dependencies = {' + "\r\n";
     angular.forEach( pack_cart, function( pack_id, pack_path ) {
@@ -139,11 +155,29 @@
     $scope.cart = code;
 
     $scope.close = function(result) {
-      console.log( result );
+      //console.log( result );
       if ( result == 'clear' ) {
         Cart.clearCart();
       };
       close(result, 500); // close, but give 500ms for bootstrap to animate
+    };
+
+  }]);
+
+  //Blob Modal
+  app.controller('BlobController',['$scope','$http','$filter','blob_url','close',function($scope,$http,$filter,blob_url,close) {
+
+    $http.get( blob_url ).then( function( result ) {
+      //console.log( result );
+      $filter('json')( result.data );
+      $scope.blob = result.data;
+    }, function( err ) {
+      //console.log( err );
+    });
+
+    $scope.close = function( result ) {
+      //console.log( result );
+      close( result, 500 );
     };
 
   }]);
