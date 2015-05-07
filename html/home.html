@@ -1,15 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10">
-<!--       <div class="well"> -->
         <div ng-controller="ButtonsController">
-        <!--   <form class="form-inline"> -->
-<!--             <div class="form-group">
-              <label for="queryFld" style:"font-size:1.5em;"><strong>Search:</strong></label>
-              <input id="queryFld" name="queryFld" class="form-control" ng-model="qfilter" ng-keyup="filterQuery($event)" type="text" >
-            </div> -->
-
-
             <div class="btn-group pull-right" style="margin-bottom: 14px;" data-toggle="buttons">
                 <label class="btn btn-default btn-sm active" ng-click="changeOrder(['pack_name'])">
                   <input type="radio" autocomplete="off" class="btn btn-default btn-sm" checked>Package</button>
@@ -18,9 +10,7 @@
                   <input type="radio" autocomplete="off" class="btn btn-default btn-sm">Author</button>
                 </label>
             </div>
-    <!--       </form> -->
         </div>
-     <!--  </div> -->
     </div>
   </div>
 
@@ -33,11 +23,12 @@
             <div class="panel-heading lead">
               <div class="row">
                 <div class="col-md-12">
-                  <h4>{{ package.pack_name }} <small>by {{ package.author }}</small></h4>
+                <div class="form-inline">
+                <span style="font-weight:bolder;font-size:1.3em;">{{ package.pack_name }}</span> <span class="text-muted">by {{ package.author }}</span> <button class="btn btn-default btn-link pull-right" ng-show="show_version_btn" ng-click="showVersions(package.link,package.author,package.pack_name)"><i class="fa fa-chevron-circle-down fa-2x fa-fw text-muted"></i></button>
                 </div>
               </div>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-hide="show_version_btn">
               <h5 ng-show="packs_loading" class="lead text-success">Loading...</h5>
               <div id="pack-versions" ng-show="packs_loaded" ng-repeat="pack in pack_versions | orderBy: '-version'">
                 <div class="row">
@@ -51,9 +42,6 @@
                     <input class="pack_cb pull-right" style="margin-top:14px;" type="checkbox" ng-show="$first" ng-click="togglePackage($event,package,pack)" ng-checked="ischecked">
                   </div>
                 </div>
-              </div>
-              <div>
-              <button class="btn btn-default btn-versions" ng-show="show_version_btn" ng-click="showVersions(package.link,package.author,package.pack_name)">Show Versions</button>
               </div>
             </div>
           </div>
