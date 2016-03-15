@@ -67,7 +67,7 @@
         var add = this.addToPackages;
 
         //authors package list
-        $http.get( rootUrl ).then( function( result ) {
+        $https.get( rootUrl ).then( function( result ) {
           var call_cnt = Object.keys(result.data).length;
           // console.log( call_cnt );
 
