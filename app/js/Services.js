@@ -95,6 +95,7 @@
 
             }, function( err ) {
               console.log( err );
+              continue;
             });
           });
         }, function( err ) {
