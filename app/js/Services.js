@@ -43,7 +43,7 @@
 
   app.service('RepoService', ['$rootScope','$http', function($rootScope,$http) {
 
-      var rootUrl = 'http://lit.luvit.io/packages';
+      var rootUrl = 'https://lit.luvit.io/packages';
       var repo = {};
       var package_arr = [];
 
