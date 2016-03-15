@@ -43,7 +43,7 @@
 
   app.service('RepoService', ['$rootScope','$http', function($rootScope,$http) {
 
-      var rootUrl = 'https://lit.luvit.io/packages';
+      var rootUrl = 'http://lit.luvit.io/packages.json';
       var repo = {};
       var package_arr = [];
 
@@ -67,7 +67,7 @@
         var add = this.addToPackages;
 
         //authors package list
-        $https.get( rootUrl ).then( function( result ) {
+        $http.get( rootUrl ).then( function( result ) {
           var call_cnt = Object.keys(result.data).length;
           // console.log( call_cnt );
 
@@ -78,7 +78,7 @@
 
           angular.forEach( repo, function( repo_obj ) {
             var author = repo_obj.author;
-            $http.get( repo_obj.link ).then( function( result ) {
+            $https.get( repo_obj.link ).then( function( result ) {
 
               angular.forEach( result.data, function( link, pack_name ) {
                 repo[ author ].packages = result.data;
